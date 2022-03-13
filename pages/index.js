@@ -24,7 +24,7 @@ export default function Home() {
 
   return (
     <div style={{ width: '60%', margin: '0 auto' }}>
-      <Carousel numberOfSlides={slides.length}>
+      <Carousel numberOfSlides={slides.length} shouldLoop>
         <CarouselSlides>
           {slides?.map(renderSlides)}
         </CarouselSlides>
