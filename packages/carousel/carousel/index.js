@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 
 import CarouselContext from '../carousel_context'
 import { FIRST_SLIDE } from './constants'
-import { debounce, getLastSlide } from './helpers'
+import { debounce, getSlideToNumber } from './helpers'
 
 const Carousel = ({
   children,
@@ -29,10 +29,11 @@ const Carousel = ({
   }
 
   const goToSlide = (slideNumber) => {
-    const carouselWidth = carouselContainerRef?.current.clientWidth
-    const newLeftValue = -(carouselWidth * slideNumber)
-
-    setCurrentSlide(slideNumber)
+    const carouselWidth = carouselContainerRef?.current?.clientWidth
+    const lastSlide = numberOfSlides - 1
+    const slideToNumber = getSlideToNumber(slideNumber, lastSlide, shouldLoop)
+    const newLeftValue = -(carouselWidth * slideToNumber)
+    setCurrentSlide(slideToNumber)
     setLeftValue(newLeftValue)
   }
 
